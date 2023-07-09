@@ -15,13 +15,15 @@ class UserRegistered
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    public User $user;
+    public bool $is_resend;
     /**
      * Create a new event instance.
      */
-    public function __construct(User $user)
+    public function __construct(User $user, bool $is_resend = false)
     {
         $this->user = $user;
+        $this->is_resend = $is_resend;
     }
 
     /**

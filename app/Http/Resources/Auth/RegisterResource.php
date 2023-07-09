@@ -24,7 +24,7 @@ class RegisterResource extends JsonResource
                 'created_at' => $this->resource['user']->created_at->format('d-m-Y H:i:s'),
                 'created_since' => $this->resource['user']->created_at->diffForHumans(),
             ],
-            'message' => 'Register success, but you need to verify your whatsapp number',
+            'message' => 'Register success, but you need to verify your whatsapp number, An OTP code has been sent to your whatsapp number',
         ];
     }
 }

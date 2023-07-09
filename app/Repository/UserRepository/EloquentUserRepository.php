@@ -11,7 +11,7 @@ class EloquentUserRepository implements UserRepository{
      * @param array<string, string> $data
      * @return \App\Models\User
      */
-    public function RegisterNewUser($data){
+    public function RegisterNewUser($data): User{
         $user = User::create($data);
         return $user;
     }

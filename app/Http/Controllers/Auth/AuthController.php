@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\VerifyOTPRequest;
 use App\Http\Services\Auth\AuthServices;
 use App\Http\Resources\Auth\LoginResource;
 use App\Http\Resources\Auth\RegisterResource;
@@ -47,5 +48,27 @@ class AuthController extends Controller
         return response()->json(
             new RegisterResource($service->registerUser($request->validated()))
         );
+    }
+
+    /**
+     * resend OTP
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resendOTP(AuthServices $service): JsonResponse
+    {
+        return $service->resendOTP(auth()->user());
+    }
+
+    /**
+     * verify OTP
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function verifyOTP(VerifyOTPRequest $request, AuthServices $service): JsonResponse
+    {
+        return $service->verifyOTP(auth()->user(), $request->otp);
     }
 }

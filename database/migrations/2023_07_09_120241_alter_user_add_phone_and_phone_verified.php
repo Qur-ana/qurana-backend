@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table): void {
             $table->string('phone')->nullable()->after('email');
-            $table->boolean('phone_verified')->default(false)->after('phone');
+            $table->timestamp('phone_verified_at')->nullable()->after('phone');
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table): void {
             $table->dropColumn('phone');
-            $table->dropColumn('phone_verified');
+            $table->dropColumn('phone_verified_at');
         });
     }
 };

@@ -16,5 +16,10 @@ use App\Http\Controllers\Auth\AuthController;
 */
 Route::prefix('auth')->group(function (): void {
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);
+    Route::prefix('register')->group(function (): void {
+        Route::post('/', [AuthController::class, 'register']);
+        Route::post('/resend-otp', [AuthController::class, 'resendOTP'])->middleware('auth:api');
+        Route::post('/verify-otp', [AuthController::class, 'verifyOTP']);
+    });
+
 });
