@@ -19,7 +19,10 @@ Route::prefix('auth')->group(function (): void {
     Route::prefix('register')->group(function (): void {
         Route::post('/', [AuthController::class, 'register']);
         Route::post('/resend-otp', [AuthController::class, 'resendOTP'])->middleware('auth:api');
-        Route::post('/verify-otp', [AuthController::class, 'verifyOTP']);
+        Route::post('/verify-otp', [AuthController::class, 'verifyOTP'])->middleware('auth:api');
     });
-
+    Route::middleware('auth:api')->group(function (): void {
+        Route::get('logout', [AuthController::class, 'logout']);
+        Route::get('me', [AuthController::class, 'user']);
+    });
 });

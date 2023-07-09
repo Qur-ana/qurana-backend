@@ -10,6 +10,7 @@ use App\Http\Requests\Auth\VerifyOTPRequest;
 use App\Http\Services\Auth\AuthServices;
 use App\Http\Resources\Auth\LoginResource;
 use App\Http\Resources\Auth\RegisterResource;
+use App\Http\Resources\Auth\UserResource;
 use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
@@ -70,5 +71,31 @@ class AuthController extends Controller
     public function verifyOTP(VerifyOTPRequest $request, AuthServices $service): JsonResponse
     {
         return $service->verifyOTP(auth()->user(), $request->otp);
+    }
+
+    /**
+     * logout user
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout(): JsonResponse
+    {
+        auth()->logout();
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
+    }
+
+    /**
+     * get user
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function user(): JsonResponse
+    {
+        return response()->json([
+            'data' => UserResource::make(auth()->user()),
+            'message' => 'Successfully retrieved user'
+        ]);
     }
 }
