@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Services\Auth\AuthServices;
 use App\Http\Resources\Auth\LoginResource;
+use App\Http\Resources\Auth\RegisterResource;
 use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
@@ -18,7 +20,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api')->except('login');
+        $this->middleware('auth:api')->except(['login', 'register']);
     }
 
     /**
@@ -30,7 +32,20 @@ class AuthController extends Controller
     public function login(LoginRequest $request, AuthServices $service): JsonResponse
     {
         return response()->json(
-            new LoginResource($service->loginToJWT($request->only(['email', 'password'])))
+            new LoginResource($service->loginToJWT($request->validated()))
+        );
+    }
+
+    /**
+     * register user
+     *
+     * @param \App\Http\Requests\Auth\RegisterRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register(RegisterRequest $request, AuthServices $service): JsonResponse
+    {
+        return response()->json(
+            new RegisterResource($service->registerUser($request->validated()))
         );
     }
 }
