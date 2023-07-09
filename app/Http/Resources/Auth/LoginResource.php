@@ -15,14 +15,15 @@ class LoginResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'token' => $this->resource,
+            'token' => $this->resource['token'],
             'user' => [
-                'id' => auth()->user()->id,
-                'name' => auth()->user()->name,
-                'email' => auth()->user()->email,
-                'email_verified_at' => auth()->user()->email_verified_at,
-                'created_at' => auth()->user()->created_at->format('d-m-Y H:i:s'),
-                'created_since' => auth()->user()->created_at->diffForHumans(),
+                'id' => $this->resource['user']['id'],
+                'name' => $this->resource['user']['name'],
+                'email' => $this->resource['user']['email'],
+                'phone' => $this->resource['user']['phone'],
+                'phone_verified_at' => $this->resource['user']['phone_verified_at'],
+                'created_at' => $this->resource['user']['created_at']->format('d-m-Y H:i:s'),
+                'created_since' => $this->resource['user']['created_at']->diffForHumans(),
             ],
             'message' => 'Login success',
         ];

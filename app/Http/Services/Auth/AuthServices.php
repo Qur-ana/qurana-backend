@@ -17,13 +17,16 @@ class AuthServices
      * @return string
      * @throws \Illuminate\Auth\AuthenticationException
      */
-    public function loginToJWT($credentials): string
+    public function loginToJWT($credentials): array
     {
         if (!$token = auth()->attempt($credentials)) {
             throw new \Illuminate\Auth\AuthenticationException('Invalid credentials');
         }
-
-        return $token;
+        $user = auth()->user();
+        return [
+            'token' => $token,
+            'user' => $user,
+        ];
     }
 
     /**
