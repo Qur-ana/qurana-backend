@@ -25,6 +25,7 @@ jobs:
           cp .env.example .env
           php artisan key:generate
           php artisan jwt:secret
+          php artisan config:cache
 
       - name: Run tests
         run: ./vendor/bin/phpunit
