@@ -31,5 +31,6 @@ Route::prefix('auth')->group(function (): void {
 Route::prefix('feature')->middleware('isVerified')->group(function (): void {
     Route::prefix('quran')->group(function (): void {
         Route::get('/', [QuranController::class, 'index']);
+        Route::get('/surah', [QuranController::class, 'detailSurah']);
     });
 });
