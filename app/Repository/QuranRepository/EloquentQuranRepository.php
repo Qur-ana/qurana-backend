@@ -34,7 +34,7 @@ class EloquentQuranRepository
     public function fetchListAyat(string $surah) : array
     {
         $client = new Client();
-        $response = $client->request('GET', 'https://open-api.my.id/api/quran/surah/'.$surah);
+        $response = $client->request('GET', $this->host . 'quran/surah/' . $surah);
         return json_decode($response->getBody()->getContents(), true);
     }
 }
