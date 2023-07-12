@@ -2,8 +2,10 @@
 
 namespace App\Repository\QuranRepository;
 
-interface QuranRepositoryInterface
+use Illuminate\Database\Eloquent\Collection;
+
+interface QuranRepository
 {
     public function fetchListSurah();
-    public function fetchListAyat($surah);
+    public function fetchListAyat(string $surah) : Collection;
 }
