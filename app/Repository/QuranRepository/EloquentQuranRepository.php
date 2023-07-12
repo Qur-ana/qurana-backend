@@ -2,26 +2,20 @@
 
 namespace App\Repository\QuranRepository;
 
-use GuzzleHttp\Client;
+use App\Models\Feature\Quran\Surah;
+use App\Models\Feature\Quran\Ayah;
+use Illuminate\Database\Eloquent\Collection;
 
 class EloquentQuranRepository
 {
-    private string $host;
-
-    public function __construct(){
-        $this->host = config('externalhost.quran_api_url');
-    }
     /**
      * fetch list surah
      *
      * @return array<string, mixed>
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function fetchListSurah() : array
+    public function fetchListSurah() : Collection
     {
-        $client = new Client();
-        $response = $client->request('GET', $this->host . 'quran/surah');
-        return json_decode($response->getBody()->getContents(), true);
+        return Surah::all();
     }
 
     /**
@@ -31,10 +25,8 @@ class EloquentQuranRepository
      * @return array<string, mixed>
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function fetchListAyat(string $surah) : array
+    public function fetchListAyat(string $surah) : Collection
     {
-        $client = new Client();
-        $response = $client->request('GET', $this->host . 'quran/surah/' . $surah);
-        return json_decode($response->getBody()->getContents(), true);
+        return Ayah::where('surah_id', $surah)->orderBy('id')->get();
     }
 }

@@ -27,19 +27,23 @@ class WhatsappChannel
      */
     public function send(User $notifiable, OtpRegisterUser $notification): bool
     {
-        $message = $notification->toWhatsapp($notifiable);
-        $client = new Client();
-        $response = $client->request('POST', $this->host . 'send-message', [
-            'headers' => [
-                'Content-Type' => 'application/json',
-            ],
-            'json' => [
-                'number' => $notifiable->phone,
-                'message' => $notification->toWhatsapp($notifiable),
-                'api_key' => $this->token,
-                'sender' => $this->sender,
-            ],
-        ]);
-        return $response->getStatusCode() === 200;
+        try {
+            $message = $notification->toWhatsapp($notifiable);
+            $client = new Client();
+            $response = $client->request('POST', $this->host . 'send-message', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'number' => $notifiable->phone,
+                    'message' => $notification->toWhatsapp($notifiable),
+                    'api_key' => $this->token,
+                    'sender' => $this->sender,
+                ],
+            ]);
+            return $response->getStatusCode() === 200;
+        }catch(\Exception $e) {
+            return false;
+        }
     }
 }
