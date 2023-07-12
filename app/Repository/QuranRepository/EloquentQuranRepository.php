@@ -6,7 +6,7 @@ use App\Models\Feature\Quran\Surah;
 use App\Models\Feature\Quran\Ayah;
 use Illuminate\Database\Eloquent\Collection;
 
-class EloquentQuranRepository implements QuranRepositoryInterface
+class EloquentQuranRepository implements QuranRepository
 {
     /**
      * fetch list surah

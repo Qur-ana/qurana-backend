@@ -33,6 +33,7 @@ Qurana is Quran application built using the Laravel framework. The application a
 6. Run database seeder with `php artisan db:seed`, it'll create sample account with username `admin`, email `admin@example.com` and password is `password` to login with JWT
 7. Run the `php artisan jwt:secret` to generate secret JWT token.
 8. Run Custom Command `php artisan app:fetch-quran` to Fetch & seed entire quran to DB
+9. Run Custom Command `php artisan app:fetch-city` to Fetch & seed entire city to DB
 9. Run the `php artisan serve` command to start the local server.
 
 ## Contribution 🤝

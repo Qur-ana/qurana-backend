@@ -93,9 +93,8 @@ class AuthController extends Controller
      */
     public function user(): JsonResponse
     {
-        return response()->json([
-            'data' => UserResource::make(auth()->user()),
-            'message' => 'Successfully retrieved user'
-        ]);
+        return response()->json(
+            new UserResource(auth()->user())
+        );
     }
 }

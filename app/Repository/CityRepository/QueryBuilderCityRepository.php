@@ -15,7 +15,7 @@ class QueryBuilderCityRepository implements CityRepository
      *
      * @return array<string, mixed>
      */
-    public function fetchListCity() : collection
+    public function fetchListCity() : Collection
     {
         return QueryBuilder::for(City::class)
             ->allowedFilters([

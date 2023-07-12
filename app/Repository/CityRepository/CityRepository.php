@@ -11,5 +11,5 @@ interface CityRepository
      *
      * @return array<string, mixed>
      */
-    public function fetchListCity() : collection;
+    public function fetchListCity() : Collection;
 }
