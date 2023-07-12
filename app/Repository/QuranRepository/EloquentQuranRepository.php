@@ -27,6 +27,6 @@ class EloquentQuranRepository
      */
     public function fetchListAyat(string $surah) : Collection
     {
-        return Ayah::where('surah_id', $surah)->orderBy('number')->get();
+        return Ayah::where('surah_id', $surah)->orderBy('id')->get();
     }
 }
