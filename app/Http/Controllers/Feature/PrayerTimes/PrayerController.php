@@ -16,8 +16,8 @@ class PrayerController extends Controller
      * @param City $city
      * @return JsonResponse
      */
-    public function getPrayerTimes(City $city) : JsonResponse
+    public function getPrayerTimes(City $city, PrayerServices $service) : JsonResponse
     {
-        return response()->json((new PrayerServices())->getPrayerTimes($city));
+        return response()->json($service->getPrayerTimes($city));
     }
 }
