@@ -3,6 +3,7 @@
 namespace App\Http\Services\Feature\Quran;
 
 use App\Repository\QuranRepository\EloquentQuranRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class QuranServices
 {
@@ -11,7 +12,7 @@ class QuranServices
      *
      * @return array<string, mixed>
      */
-    public function fetchListSurah(): array
+    public function fetchListSurah(): Collection
     {
         $data = (new EloquentQuranRepository())->fetchListSurah();
         return $data;
@@ -23,7 +24,7 @@ class QuranServices
      * @param integer $surah
      * @return array<string, mixed>
      */
-    public function fetchListAyat(string $surah): array
+    public function fetchListAyat(string $surah): Collection
     {
         $data = (new EloquentQuranRepository())->fetchListAyat($surah);
         return $data;
