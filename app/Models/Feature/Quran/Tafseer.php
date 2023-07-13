@@ -5,17 +5,16 @@ namespace App\Models\Feature\Quran;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ayah extends Model
+class Tafseer extends Model
 {
     use HasFactory;
 
-    protected $table = 'ayah';
+    protected $table = 'tafseer';
     protected $fillable = [
-        'number',
         'surah_id',
-        'text_arabic',
-        'text_latin',
-        'text_id',
+        'ayah_id',
+        'simple_tafseer',
+        'full_tafseer'
     ];
 
     public function surah()
@@ -23,8 +22,8 @@ class Ayah extends Model
         return $this->belongsTo(Surah::class);
     }
 
-    public function tafseer()
+    public function ayah()
     {
-        return $this->hasOne(Tafseer::class);
+        return $this->belongsTo(Ayah::class);
     }
 }

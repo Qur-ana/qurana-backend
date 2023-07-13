@@ -5,6 +5,7 @@ namespace App\Http\Services\Feature\Quran;
 use App\Repository\QuranRepository\EloquentQuranRepository;
 use Illuminate\Database\Eloquent\Collection;
 use App\Models\Feature\Quran\Ayah;
+use App\Models\Feature\Quran\Tafseer;
 
 class QuranServices
 {
@@ -31,7 +32,7 @@ class QuranServices
         return $data;
     }
 
-    public function fetchTafseerAyat(Ayah $ayah): array
+    public function fetchTafseerAyat(Ayah $ayah): Tafseer
     {
         $data = (new EloquentQuranRepository())->fetchTafseerAyat($ayah);
         return $data;
