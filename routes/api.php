@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Feature\Quran\QuranController;
 use App\Http\Controllers\Feature\PrayerTimes\CityController;
 use App\Http\Controllers\Feature\PrayerTimes\PrayerController;
+use App\Http\Controllers\Feature\AsmaulHusna\AsmaulHusnaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,8 @@ Route::prefix('feature')->middleware('isVerified')->group(function (): void {
     Route::prefix('prayertimes')->group(function (): void {
         Route::get('/city', [CityController::class, 'index']);
         Route::get('/times/{city}', [PrayerController::class, 'getPrayerTimes']);
+    });
+    Route::prefix('asmaulhusna')->group(function (): void {
+        Route::get('/', [AsmaulHusnaController::class, 'index']);
     });
 });
