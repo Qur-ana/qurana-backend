@@ -34,6 +34,7 @@ Route::prefix('feature')->middleware('isVerified')->group(function (): void {
     Route::prefix('quran')->group(function (): void {
         Route::get('/', [QuranController::class, 'index']);
         Route::get('/surah', [QuranController::class, 'detailSurah']);
+        Route::get('/tafseer/{ayah}', [QuranController::class, 'tafseerAyat']);
     });
     Route::prefix('prayertimes')->group(function (): void {
         Route::get('/city', [CityController::class, 'index']);
