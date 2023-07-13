@@ -63,6 +63,10 @@ class MasterCommand extends Command
         echo "Fetching data City...\n";
         $this->call('app:fetch-city');
         sleep(1);
+        echo "Fetching Asmaul Husna...\n";
+        $this->call('app:fetch-asmaul-husna');
+        echo "Fetching Asmaul Husna completed!\n";
+        sleep(1);
         echo "++++++++++++++++++++++++Start Scrape Tafseer++++++++++++++++++++++++\n";
         echo "Will Fetch Tafseer from API and save to database\n";
         echo "It may take over 20 minutes, fetching 6236 ayah and use size of data around 17Mb\n";

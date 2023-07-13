@@ -49,5 +49,5 @@ The Qurana Backend repository is licensed under the [MIT License](LICENSE).
 
 ## Special Thanks To
 
-Special Thanks to our API Provider from [SantriKoding](https://santrikoding.com) and [MyQuran](https://api.myquran.com/) that provide us with the API to make this project possible.
+Special Thanks to our API Provider from [SantriKoding](https://santrikoding.com), [MyQuran](https://api.myquran.com/) and [mikqi](https://github.com/mikqi) that provide us with the API and JSON to make this project possible.
 Jazaakumullah Khairan Katsiran 🙏
