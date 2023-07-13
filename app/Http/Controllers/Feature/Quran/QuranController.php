@@ -9,6 +9,7 @@ use App\Http\Services\Feature\Quran\QuranServices;
 use App\Http\Requests\Feature\Quran\DetailSurahRequest;
 use App\Http\Resources\Feature\Quran\GetAllSurahResource;
 use App\Http\Resources\Feature\Quran\GetAllAyatResource;
+use App\Models\Feature\Quran\Ayah;
 
 class QuranController extends Controller
 {
@@ -34,6 +35,17 @@ class QuranController extends Controller
     {
         return response()->json(
             new GetAllAyatResource($service->fetchListAyat($request->surah))
+        );
+    }
+
+    /**
+     * tafseer ayat
+     */
+
+    public function tafseerAyat(QuranServices $service, Ayah $ayah) : JsonResponse
+    {
+        return response()->json(
+            $service->fetchTafseerAyat($ayah)
         );
     }
 }

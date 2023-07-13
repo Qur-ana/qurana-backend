@@ -62,6 +62,7 @@ class FetchQuranToDBCommand extends Command
             Surah::create($surah);
             echo 'Surah ' . $surah['name_latin'] . " created successfully\n";
         }
+        sleep(1);
         echo "========================All surah created successfully========================\n";
         echo "++++++++++++++++++++++++Begin fetch ayah++++++++++++++++++++++++\n";
     }
@@ -84,8 +85,8 @@ class FetchQuranToDBCommand extends Command
                 $ayah['text_latin'] = $ayah['tr'];
                 $ayah['text_id'] = $ayah['idn'];
                 Ayah::create($ayah);
-                echo 'Ayah ' . $ayah['number'] . ' from ' . $surah->name_latin . " created successfully\n";
             }
+            echo 'All Ayah from ' . $surah->name_latin . " created successfully\n";
         }
         echo "========================All Ayah created successfully========================\n";
         echo "++++++++++++++++++++++++Successfully Scrape entire Qur'an++++++++++++++++++++++++\n";
