@@ -27,7 +27,7 @@ jobs:
           APP_ENV: testing
   deploy:
     needs: tests
-    if: ${{ github.ref == 'refs/heads/chore/master' && needs.tests.result == 'success' }}
+    if: ${{ github.ref == 'refs/heads/master' && needs.tests.result == 'success' }}
     name: Deploy to production
     runs-on: ubuntu-latest
     steps:
